@@ -1,4 +1,4 @@
-main-plate {
+.main-plate {
     position: absolute;
     width: 140px;
     height: 140px;
@@ -9,20 +9,35 @@ main-plate {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    transition: opacity 0.5s ease-out;
   }
   
-.main-food {
+  .main-food {
     width: 100px;
     height: 100px;
-    background-color: #8B4513;
+    background-color: #8B4513; /* Brown color for food */
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-}
+  }
   
-.empty-plate {
+  .empty-plate {
+    width: 100px;
+    height: 100px;
+    background-color: #d9c8ba; /* Light brown for empty plate */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 12px;
     color: #999;
-}
+  }
+  
+  .no-food {
+    width: 100px;
+    height: 100px;
+    background-color: white; /* Empty white plate */
+    border-radius: 50%;
+  }

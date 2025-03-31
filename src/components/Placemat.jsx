@@ -5,48 +5,28 @@ import SoupPlate from './SoupPlate';
 import Utensils from './Utensils';
 import './Placemat.css';
 
+// In Placemat.jsx, change the initial state:
 function Placemat({ guest }) {
-  const [hasSoup, setHasSoup] = useState(false);
+  const [hasSoup, setHasSoup] = useState(true); // Start with soup plate visible
   const [soupEaten, setSoupEaten] = useState(false);
-  const [hasMain, setHasMain] = useState(false);
+  const [soupServed, setSoupServed] = useState(false); // New state for soup being served
+  const [hasMain, setHasMain] = useState(true); // Start with main plate visible 
   const [mainEaten, setMainEaten] = useState(false);
+  const [mainServed, setMainServed] = useState(false); // New state for main being served
   const [message, setMessage] = useState('');
 
-  // useEffect to demonstrate lifecycle - show message when soup is served
-  useEffect(() => {
-    if (hasSoup) {
-      setMessage(`Hot soup served to ${guest}!`);
-      const timer = setTimeout(() => {
-        setMessage('');
-      }, 3000);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [hasSoup, guest]);
-
-  // useEffect to demonstrate conditional effects - show message when main course is served
-  useEffect(() => {
-    if (hasMain) {
-      setMessage(`Main course served to ${guest}!`);
-      const timer = setTimeout(() => {
-        setMessage('');
-      }, 3000);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [hasMain, guest]);
-
-  // Function to serve soup
+  // Update the getSoup function
   const getSoup = () => {
-    if (!hasSoup) {
-      setHasSoup(true);
-      setSoupEaten(false);
+    if (hasSoup && !soupServed) {
+      setSoupServed(true);
+      setMessage(`Hot soup served to ${guest}!`);
+      setTimeout(() => setMessage(''), 3000);
     }
   };
 
-  // Function to eat soup
+  // Update the eatSoup function
   const eatSoup = () => {
-    if (hasSoup && !soupEaten) {
+    if (hasSoup && soupServed && !soupEaten) {
       setSoupEaten(true);
       setMessage(`${guest} has finished their soup!`);
       
@@ -58,42 +38,52 @@ function Placemat({ guest }) {
     }
   };
 
-  // Function to serve main course
+  // Update the getMain function
   const getMain = () => {
-    if (soupEaten && !hasMain) {
-      setHasMain(true);
-      setMainEaten(false);
-    } else if (!soupEaten) {
+    if (hasMain && !soupServed) {
+      setMessage('Please serve and eat your soup first!');
+      setTimeout(() => setMessage(''), 3000);
+    } else if (hasMain && soupServed && !soupEaten) {
       setMessage('Please finish your soup first!');
       setTimeout(() => setMessage(''), 3000);
-    }
-  };
-
-  // Function to eat main course
-  const eatMain = () => {
-    if (hasMain && !mainEaten) {
-      setMainEaten(true);
-      setMessage(`${guest} has finished their main course!`);
+    } else if (hasMain && !mainServed) {
+      setMainServed(true);
+      setMessage(`Main course served to ${guest}!`);
       setTimeout(() => setMessage(''), 3000);
     }
   };
 
+  // Update the eatMain function
+  const eatMain = () => {
+    if (hasMain && mainServed && !mainEaten) {
+      setMainEaten(true);
+      setMessage(`${guest} has finished their main course!`);
+      
+      // Add a delay before removing the main plate
+      setTimeout(() => {
+        setMessage('');
+        setHasMain(false); // This will remove the main plate completely
+      }, 3000);
+    }
+  };
+
+  // Update the JSX rendering
   return (
     <div className="placemat">
       <h3>{guest}'s Setting</h3>
       <div className="setting">
-      <div className="plate-area">
-        {hasSoup && <SoupPlate empty={soupEaten} />}
-        <MainPlate hasFood={hasMain} empty={mainEaten} />
-      </div>
+        <div className="plate-area">
+          {hasMain && <MainPlate hasFood={mainServed} empty={mainEaten} />}
+          {hasSoup && <SoupPlate served={soupServed} empty={soupEaten} />}
+        </div>
         <Utensils />
       </div>
       <div className="message">{message}</div>
       <div className="controls">
-        <button onClick={getSoup} disabled={hasSoup}>Get Soup</button>
-        <button onClick={eatSoup} disabled={!hasSoup || soupEaten}>Eat Soup</button>
-        <button onClick={getMain} disabled={!soupEaten || hasMain}>Get Main</button>
-        <button onClick={eatMain} disabled={!hasMain || mainEaten}>Eat Main</button>
+        <button onClick={getSoup} disabled={!hasSoup || soupServed}>Serve Soup</button>
+        <button onClick={eatSoup} disabled={!hasSoup || !soupServed || soupEaten}>Eat Soup</button>
+        <button onClick={getMain} disabled={!hasMain || mainServed || (hasSoup && !soupEaten)}>Serve Main</button>
+        <button onClick={eatMain} disabled={!hasMain || !mainServed || mainEaten}>Eat Main</button>
       </div>
     </div>
   );

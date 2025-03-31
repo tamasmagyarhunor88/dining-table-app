@@ -2,10 +2,12 @@
 import React from 'react';
 import './SoupPlate.css';
 
-function SoupPlate({ empty }) {
+function SoupPlate({ served, empty }) {
   return (
     <div className="soup-plate">
-      {!empty ? <div className="soup">Soup</div> : <div className="empty-soup">Empty</div>}
+      {served && !empty && <div className="soup">Soup</div>}
+      {served && empty && <div className="empty-soup">Empty</div>}
+      {!served && <div className="no-soup"></div>}
     </div>
   );
 }

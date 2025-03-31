@@ -6,7 +6,8 @@ function MainPlate({ hasFood, empty }) {
   return (
     <div className="main-plate">
       {hasFood && !empty && <div className="main-food">Main Course</div>}
-      {hasFood && empty && <div className="empty-plate">Empty Plate</div>}
+      {hasFood && empty && <div className="empty-plate">Empty</div>}
+      {!hasFood && <div className="no-food"></div>}
     </div>
   );
 }
