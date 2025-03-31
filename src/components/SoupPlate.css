@@ -1,0 +1,31 @@
+.soup-plate {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #dddddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+.soup {
+    width: 60px;
+    height: 60px;
+    background-color: #e6b800;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+.empty-soup {
+    font-size: 12px;
+    color: #999;
+  }
