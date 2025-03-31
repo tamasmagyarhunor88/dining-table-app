@@ -1,43 +1,68 @@
 .main-plate {
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    background-color: white;
-    border-radius: 50%;
-    border: 2px solid #dddddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    transition: opacity 0.5s ease-out;
-  }
-  
-  .main-food {
-    width: 100px;
-    height: 100px;
-    background-color: #8B4513; /* Brown color for food */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-  }
-  
-  .empty-plate {
-    width: 100px;
-    height: 100px;
-    background-color: #d9c8ba; /* Light brown for empty plate */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    color: #999;
-  }
-  
-  .no-food {
-    width: 100px;
-    height: 100px;
-    background-color: white; /* Empty white plate */
-    border-radius: 50%;
-  }
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid #dddddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.main-food {
+  width: 100px;
+  height: 100px;
+  background-color: #8B4513; /* Brown color for food */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.empty-plate {
+  width: 100px;
+  height: 100px;
+  background-color: #d9c8ba; /* Light brown for empty plate */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.no-food {
+  width: 100px;
+  height: 100px;
+  background-color: white; /* Empty white plate */
+  border-radius: 50%;
+}
+
+.main-controls {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.main-controls button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.main-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

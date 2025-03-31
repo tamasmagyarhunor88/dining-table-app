@@ -44,3 +44,26 @@
   background-color: white; /* Empty white plate */
   border-radius: 50%;
 }
+
+.soup-controls {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.soup-controls button {
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.soup-controls button:disabled {
+  background-color: #ffcccc;
+  cursor: not-allowed;
+}
