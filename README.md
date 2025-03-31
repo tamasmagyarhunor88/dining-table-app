@@ -25,7 +25,7 @@ These instructions will help you set up and run the project on your local machin
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dining-table-app.git
+git clone https://github.com/tamasmagyarhunor-makers/dining-table-app.git
 cd dining-table-app
 ```
 
