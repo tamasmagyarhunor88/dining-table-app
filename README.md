@@ -2,7 +2,7 @@
 
 A simple React application built with Vite that demonstrates fundamental React concepts including component hierarchy, state management, and React hooks (useState, useEffect).
 
-[View demo video](./dining-table.mov)
+![Table Dining App Demo](./dining-table-demo.gif)
 
 ## Features
 
