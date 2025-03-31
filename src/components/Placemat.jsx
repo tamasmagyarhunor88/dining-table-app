@@ -49,7 +49,12 @@ function Placemat({ guest }) {
     if (hasSoup && !soupEaten) {
       setSoupEaten(true);
       setMessage(`${guest} has finished their soup!`);
-      setTimeout(() => setMessage(''), 3000);
+      
+      // Add a delay before removing the soup plate completely
+      setTimeout(() => {
+        setMessage('');
+        setHasSoup(false); // This will remove the soup plate completely
+      }, 3000);
     }
   };
 
@@ -77,10 +82,10 @@ function Placemat({ guest }) {
     <div className="placemat">
       <h3>{guest}'s Setting</h3>
       <div className="setting">
-        <div className="plate-area">
-          {hasSoup && <SoupPlate empty={soupEaten} />}
-          <MainPlate hasFood={hasMain} empty={mainEaten} />
-        </div>
+      <div className="plate-area">
+        {hasSoup && <SoupPlate empty={soupEaten} />}
+        <MainPlate hasFood={hasMain} empty={mainEaten} />
+      </div>
         <Utensils />
       </div>
       <div className="message">{message}</div>
